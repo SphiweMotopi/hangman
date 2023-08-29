@@ -1,0 +1,65 @@
+
+.hangman-container {
+    text-align: center;
+    padding: 2rem;
+    margin: auto;
+  }
+  
+  .masked-word {
+    font-size: 24px;
+    margin-bottom: 1rem;
+  }
+  
+  .alphabet-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 0px 300px;
+  }
+
+  .hangman-container {
+    position: relative;
+  }
+  
+  .hangman-images {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1;
+  }
+  
+  .hangman-image {
+    width: 90px;
+    height: 90px;
+    opacity: 0.5;
+  }
+  
+  .alphabet-button {
+    transition: background-color 0.3s, color 0.3s;
+    margin: 5px;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .alphabet-button.correct {
+    background-color: #1aa0de;
+    color: white;
+    pointer-events: none;
+  }
+  
+  .modal-dialog {
+    max-width: 400px;
+  }
+
+.hangman-image {
+    max-width: 100%;
+    height: auto;
+    transition: opacity 0.3s;
+  }
+
+  
