@@ -1,5 +1,5 @@
 import React from 'react';
-import Hangman from './Hangman';
+import Hangman from './components/Hangman';
 
 const App = () => <Hangman />
 

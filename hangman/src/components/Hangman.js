@@ -1,29 +1,33 @@
+
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Hangman.css';
-
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import HangmanImage from './components/HangmanImage';
-import MaskedWord from './components/MaskedWord';
-import AlphabetButtons from './components/AlphabetButtons';
-import ResultMessage from './components/ResultMessage';
+import HangmanImage from './HangmanImage';
+import MaskedWord from './MaskedWord';
+import AlphabetButtons from './AlphabetButtons';
+import ResultMessage from './ResultMessage';
 
+// List of words for the game
 const words = ["HANGMAN", "COMPUTER", "JAVASCRIPT"];
 
+// Hangman component
 export default function Hangman() {
+  
   const [initialWord, setInitialWord] = useState("");
-  const alphabets = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-  const [correctGuesses, setCorrectGuesses] = useState([]);
-  const [incorrectGuesses, setIncorrectGuesses] = useState([]);
-  const [showHelp, setShowHelp] = useState(false);
-  const [firstIncorrectGuess, setFirstIncorrectGuess] = useState(null);
-  const maxIncorrectGuesses = 11;
+  const alphabets = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"]; 
+  const [correctGuesses, setCorrectGuesses] = useState([]); 
+  const [incorrectGuesses, setIncorrectGuesses] = useState([]); 
+  const [showHelp, setShowHelp] = useState(false); 
+  const [firstIncorrectGuess, setFirstIncorrectGuess] = useState(null); 
+  const maxIncorrectGuesses = 11; // Maximum allowed incorrect guesses
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * words.length);
     setInitialWord(words[randomIndex]);
   }, []);
 
+  // Check incorrect guesses
   useEffect(() => {
     if (incorrectGuesses.length >= maxIncorrectGuesses) {
       setShowHelp(true);
@@ -41,18 +45,22 @@ export default function Hangman() {
     }
   };
 
+  // Check if a letter has been guessed correctly
   const isLetterGuessed = (letter) => correctGuesses.includes(letter);
 
+  // Word to display
   const maskedWord = initialWord
     .split('')
     .map((letter) => (isLetterGuessed(letter) ? letter : "_"))
     .join(" ");
 
+  // Hangman image to display
   const getCurrentHangmanImage = () => {
     const incorrectGuessCount = incorrectGuesses.length;
     return Math.min(incorrectGuessCount, maxIncorrectGuesses);
   };
 
+  // Reloading the page
   const restartGame = () => {
     window.location.reload();
   };
